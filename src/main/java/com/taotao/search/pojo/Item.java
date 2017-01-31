@@ -1,117 +1,139 @@
 package com.taotao.search.pojo;
 
 public class Item {
-    private String id;
-    private String item_titile;
-    private String item_sellpoint;
-    private Long price;
-    private String item_pic;
-    private String item_category;
-    private String item_description;
+	private String item_id;
+	private String item_title;
+	private String item_sell_point;
+	private Long item_price;
+	private String item_image;
+	private String item_category_name;
 
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * @return the item_id
+	 */
+	public String getItem_id() {
+		return item_id;
+	}
 
-    /**
-     * @param id
-     *            the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+	/**
+	 * @param item_id
+	 *            the item_id to set
+	 */
+	public void setItem_id(String item_id) {
+		this.item_id = item_id;
+	}
 
-    /**
-     * @return the item_titile
-     */
-    public String getItem_titile() {
-        return item_titile;
-    }
+	/**
+	 * @return the item_title
+	 */
+	public String getItem_title() {
+		return item_title;
+	}
 
-    /**
-     * @param item_titile
-     *            the item_titile to set
-     */
-    public void setItem_titile(String item_titile) {
-        this.item_titile = item_titile;
-    }
+	/**
+	 * @param item_title
+	 *            the item_title to set
+	 */
+	public void setItem_title(String item_title) {
+		this.item_title = item_title;
+	}
 
-    /**
-     * @return the item_sellpoint
-     */
-    public String getItem_sellpoint() {
-        return item_sellpoint;
-    }
+	/**
+	 * @return the item_sell_point
+	 */
+	public String getItem_sell_point() {
+		return item_sell_point;
+	}
 
-    /**
-     * @param item_sellpoint
-     *            the item_sellpoint to set
-     */
-    public void setItem_sellpoint(String item_sellpoint) {
-        this.item_sellpoint = item_sellpoint;
-    }
+	/**
+	 * @param item_sell_point
+	 *            the item_sell_point to set
+	 */
+	public void setItem_sell_point(String item_sell_point) {
+		this.item_sell_point = item_sell_point;
+	}
 
-    /**
-     * @return the price
-     */
-    public Long getPrice() {
-        return price;
-    }
+	/**
+	 * @return the item_price
+	 */
+	public Long getItem_price() {
+		return item_price;
+	}
 
-    /**
-     * @param price
-     *            the price to set
-     */
-    public void setPrice(Long price) {
-        this.price = price;
-    }
+	/**
+	 * @param item_price
+	 *            the item_price to set
+	 */
+	public void setItem_price(Long item_price) {
+		this.item_price = item_price;
+	}
 
-    /**
-     * @return the item_pic
-     */
-    public String getItem_pic() {
-        return item_pic;
-    }
+	/**
+	 * @return the item_image
+	 */
+	public String getItem_image() {
+		return item_image;
+	}
 
-    /**
-     * @param item_pic
-     *            the item_pic to set
-     */
-    public void setItem_pic(String item_pic) {
-        this.item_pic = item_pic;
-    }
+	/**
+	 * @param item_image
+	 *            the item_image to set
+	 */
+	public void setItem_image(String item_image) {
+		this.item_image = item_image;
+	}
 
-    /**
-     * @return the item_category
-     */
-    public String getItem_category() {
-        return item_category;
-    }
+	/**
+	 * @return the item_category_name
+	 */
+	public String getItem_category_name() {
+		return item_category_name;
+	}
 
-    /**
-     * @param item_category
-     *            the item_category to set
-     */
-    public void setItem_category(String item_category) {
-        this.item_category = item_category;
-    }
+	/**
+	 * @param item_category_name
+	 *            the item_category_name to set
+	 */
+	public void setItem_category_name(String item_category_name) {
+		this.item_category_name = item_category_name;
+	}
 
-    /**
-     * @return the item_description
-     */
-    public String getItem_description() {
-        return item_description;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Item [item_id=" + item_id + ", item_title=" + item_title + ", item_sell_point=" + item_sell_point
+				+ ", item_price=" + item_price + ", item_image=" + item_image + ", item_category_name="
+				+ item_category_name + "]";
+	}
 
-    /**
-     * @param item_description
-     *            the item_description to set
-     */
-    public void setItem_description(String item_description) {
-        this.item_description = item_description;
-    }
+	/**
+	 * @param item_id
+	 * @param item_title
+	 * @param item_sell_point
+	 * @param item_price
+	 * @param item_image
+	 * @param item_category_name
+	 */
+	public Item(String item_id, String item_title, String item_sell_point, Long item_price, String item_image,
+			String item_category_name) {
+		super();
+		this.item_id = item_id;
+		this.item_title = item_title;
+		this.item_sell_point = item_sell_point;
+		this.item_price = item_price;
+		this.item_image = item_image;
+		this.item_category_name = item_category_name;
+	}
+
+	/**
+	 * 
+	 */
+	public Item() {
+		super();
+	}
 
 }
