@@ -1,7 +1,5 @@
 package com.taotao.search.controller;
 
-import java.io.UnsupportedEncodingException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.taotao.pojo.TaotaoResult;
 import com.taotao.search.pojo.SearchResult;
-import com.taotao.search.service.SearchDao;
+import com.taotao.search.service.SearchService;
 import com.taotao.util.ExceptionUtil;
 
 /**
@@ -24,7 +22,7 @@ import com.taotao.util.ExceptionUtil;
 public class SearchController {
 
     @Autowired
-    private SearchDao searchDao;
+    private SearchService searchDao;
 
     @RequestMapping("/query")
     @ResponseBody

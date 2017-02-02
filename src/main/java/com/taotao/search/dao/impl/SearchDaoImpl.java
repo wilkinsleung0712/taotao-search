@@ -1,4 +1,4 @@
-package com.taotao.search.service.impl;
+package com.taotao.search.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,23 +6,16 @@ import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
-import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.params.CommonParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.taotao.search.dao.SearchDao;
 import com.taotao.search.pojo.Item;
 import com.taotao.search.pojo.SearchResult;
-import com.taotao.search.service.SearchDao;
 
-/**
- * @Date 10:13:08 am 31 Jan 2017
- * @author wilkins.liang
- *
- */
 @Repository
 public class SearchDaoImpl implements SearchDao {
 
@@ -36,13 +29,7 @@ public class SearchDaoImpl implements SearchDao {
     private static String ITEM_PRICE = "item_price";
 
     @Override
-    public SearchResult search(String queryString, Integer pages, Integer rows) throws SolrServerException {
-        // 建造一个query类
-        SolrQuery solrQuery = new SolrQuery(queryString);
-        solrQuery.addHighlightField(ITEM_TITLE);
-        solrQuery.set(CommonParams.DF, "item_keywords");
-        solrQuery.setStart(pages * rows);
-        solrQuery.setRows(rows);
+    public SearchResult searchItem(SolrQuery solrQuery) throws Exception {
         // 执行查询
         QueryResponse queryResponse = solrServer.query(solrQuery);
         SearchResult result = new SearchResult();
@@ -58,12 +45,11 @@ public class SearchDaoImpl implements SearchDao {
             // 取出高亮
             List<String> itemTitlesList = highlighting.get(solrDocument.get("id")).get(ITEM_TITLE);
             String itemTitle = "";
-            if (itemTitlesList != null && !itemTitlesList.isEmpty()) {
+            if (null != itemTitlesList && !itemTitlesList.isEmpty()) {
                 itemTitle = itemTitlesList.get(0);
             } else {
                 itemTitle = (String) solrDocument.get(ITEM_TITLE);
             }
-
             item.setItem_title(itemTitle);
             item.setItem_category_name((String) solrDocument.get(ITEM_CATEGORY_NAME));
             item.setItem_image((String) solrDocument.get(ITEM_IMAGE));
@@ -72,9 +58,8 @@ public class SearchDaoImpl implements SearchDao {
             resultItemList.add(item);
         }
         // 得到一个itemlist之后需要构建一个返回pojo
-        result.setRecordCount(results.getNumFound());
-        result.setPageCount(results.getStart());
         result.setItemList(resultItemList);
+        result.setPageCount(results.getNumFound());
         return result;
     }
 
