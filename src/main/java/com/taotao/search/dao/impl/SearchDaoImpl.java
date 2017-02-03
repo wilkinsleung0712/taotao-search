@@ -41,7 +41,7 @@ public class SearchDaoImpl implements SearchDao {
         // 遍历每一个document类
         for (SolrDocument solrDocument : results) {
             Item item = new Item();
-            item.setItem_id((String) solrDocument.get("id"));
+            item.setId((String) solrDocument.get("id"));
             // 取出高亮
             List<String> itemTitlesList = highlighting.get(solrDocument.get("id")).get(ITEM_TITLE);
             String itemTitle = "";
@@ -50,16 +50,16 @@ public class SearchDaoImpl implements SearchDao {
             } else {
                 itemTitle = (String) solrDocument.get(ITEM_TITLE);
             }
-            item.setItem_title(itemTitle);
-            item.setItem_category_name((String) solrDocument.get(ITEM_CATEGORY_NAME));
-            item.setItem_image((String) solrDocument.get(ITEM_IMAGE));
-            item.setItem_sell_point((String) solrDocument.get(ITEM_SELL_POINT));
-            item.setItem_price((Long) solrDocument.get(ITEM_PRICE));
+            item.setTitle(itemTitle);
+            item.setCategory_name((String) solrDocument.get(ITEM_CATEGORY_NAME));
+            item.setImage((String) solrDocument.get(ITEM_IMAGE));
+            item.setSell_point((String) solrDocument.get(ITEM_SELL_POINT));
+            item.setPrice((Long) solrDocument.get(ITEM_PRICE));
             resultItemList.add(item);
         }
         // 得到一个itemlist之后需要构建一个返回pojo
         result.setItemList(resultItemList);
-        result.setPageCount(results.getNumFound());
+        result.setRecordCount(results.getNumFound());
         return result;
     }
 

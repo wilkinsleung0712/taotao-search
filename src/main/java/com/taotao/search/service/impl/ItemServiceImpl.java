@@ -33,12 +33,12 @@ public class ItemServiceImpl implements ItemService {
 		try {
 			for (Item item : allItems) {
 				SolrInputDocument document = new SolrInputDocument();
-				document.addField("id", item.getItem_id());
-				document.addField("item_title", item.getItem_title());
-				document.addField("item_sell_point", item.getItem_sell_point());
-				document.addField("item_price", item.getItem_price());
-				document.addField("item_image", item.getItem_image());
-				document.addField("item_category_name", item.getItem_category_name());
+				document.addField("id", item.getId());
+				document.addField("title", item.getTitle());
+				document.addField("sell_point", item.getSell_point());
+				document.addField("price", item.getPrice());
+				document.addField("image", item.getImage());
+				document.addField("category_name", item.getCategory_name());
 				docs.add(document);
 			}
 			solrServer.add(docs);

@@ -30,12 +30,16 @@ public class SearchServiceImpl implements SearchService {
         solrQuery.addHighlightField(ITEM_TITLE);
         solrQuery.set(CommonParams.DF, "item_keywords");
         // 默认应该是从第0条开始查询
-        solrQuery.setStart((int) ((page-1) * rows));
+        solrQuery.setStart((int) ((page - 1) * rows));
         solrQuery.setRows(rows);
         // 执行查询
         result = searchDao.searchItem(solrQuery);
         long rowCount = result.getRecordCount();
         long pageCount = rowCount / rows;
+        // 如果pagecount不能被整除 我们需要多加一页来放数据
+        if (rowCount % rows > 0) {
+            pageCount++;
+        }
         result.setPageCount(pageCount);
         // 默认应该为第一页数据
         result.setCurPage(page);
